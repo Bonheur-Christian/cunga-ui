@@ -1,30 +1,74 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 import Image from "next/image";
-import { Button } from "../../ui/button";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { FuturisticBackground } from "./FuturisticBackground";
 
 export function Hero() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  // Parallax effects
+  const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+
   return (
-    <div className="max-w-[90%] mx-auto">
+    <motion.div
+      ref={ref}
+      className="max-w-[90%] mx-auto relative"
+      style={{ opacity }}
+    >
+      <FuturisticBackground />
       <section className="max-h-screen flex items-center h-[90vh]">
         <div className="px-4 md:px-8 w-full">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div className="flex flex-col justify-center space-y-6 pt-32 md:pt-0">
-              <div>
+            <motion.div
+              className="flex flex-col justify-center space-y-6 pt-32 md:pt-0"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
                 <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-2 leading-tight text-pretty">
                   We&apos;re to Empower Your Business Growth
                 </h1>
-                <div className="h-1 w-48 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full mt-4 -skew-y-1"></div>
-              </div>
-              <p className="text-gray-700 text-lg leading-relaxed max-w-md">
+                <motion.div
+                  className="h-1 w-48 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full mt-4 -skew-y-1"
+                  initial={{ width: 0 }}
+                  animate={{ width: 192 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                />
+              </motion.div>
+              <motion.p
+                className="text-gray-700 text-lg leading-relaxed max-w-md"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
                 Streamline your daily operations from inventory management to
                 sales tracking. Built specifically for business owners who want
                 to focus on growth, not paperwork.
-              </p>
+              </motion.p>
               {/* CTA Buttons */}
-              <div className="flex items-center gap-4 pt-4">
+              <motion.div
+                className="flex items-center gap-4 pt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
                 <Button className="bg-teal-500 hover:bg-teal-600 text-white px-8 py-6 rounded-full font-semibold cursor-pointer hover:scale-105 duration-300 transition-all">
                   Try free trial
                 </Button>
@@ -37,25 +81,45 @@ export function Hero() {
                   </div> */}
                   See How It Works
                 </Button>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
             {/* Right Side - Hero Image Area */}
-            <div className="relative h-96 md:h-full flex items-center justify-center">
+            <motion.div
+              className="relative h-96 md:h-full flex items-center justify-center"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{
+                y: useTransform(scrollYProgress, [0, 1], [0, 150]),
+                scale: scale,
+              }}
+            >
               {/* Background gradient shapes */}
               <div className="absolute inset-0 bg-gradient-to-br from-teal-300 to-teal-500 rounded-3xl opacity-80 -z-10"></div>
               {/* Main image placeholder - replace with actual image */}
               <div className="relative w-full h-full flex items-center justify-center">
-                <div className="text-center text-">
+                <motion.div
+                  className="text-center"
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
                   <Image
                     src="/images/hero.jpg"
                     alt="Hero section Image"
                     width={800}
                     height={200}
                   />
-                </div>
+                </motion.div>
               </div>
               {/* Floating card 1 - Payment form */}
-              <div className="absolute top-12 right-8 bg-white rounded-lg p-4 shadow-lg z-10 w-40">
+              <motion.div
+                className="absolute top-12 right-8 bg-white rounded-lg p-4 shadow-lg z-10 w-40"
+                initial={{ opacity: 0, y: -30, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+              >
                 <p className="text-xs text-gray-500 mb-1">
                   Visualize your operations
                 </p>
@@ -63,9 +127,15 @@ export function Hero() {
                 <div className="w-full bg-teal-500 hover:bg-teal-600 text-white py-2 flex justify-center rounded-lg text-sm font-semibold transition-colors">
                   Record
                 </div>
-              </div>
+              </motion.div>
               {/* Floating card 2 - Credit card */}
-              <div className="absolute bottom-16 right-4 bg-gray-900 rounded-xl p-4 shadow-xl z-10 w-48 h-32 text-white">
+              <motion.div
+                className="absolute bottom-16 right-4 bg-gray-900 rounded-xl p-4 shadow-xl z-10 w-48 h-32 text-white"
+                initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                whileHover={{ scale: 1.05, y: 5 }}
+              >
                 <p className="text-xs font-semibold mb-8">Track sales</p>
                 <div className="flex justify-between items-end">
                   <div>
@@ -74,9 +144,15 @@ export function Hero() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
               {/* Floating icon 1 - Checkmark */}
-              <div className="absolute top-1/3 left-8 bg-indigo-600 text-white p-3 rounded-lg shadow-lg z-10">
+              <motion.div
+                className="absolute top-1/3 left-8 bg-indigo-600 text-white p-3 rounded-lg shadow-lg z-10"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3, type: "spring" }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+              >
                 <svg
                   className="w-5 h-5"
                   fill="currentColor"
@@ -88,9 +164,15 @@ export function Hero() {
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
+              </motion.div>
               {/* Floating icon 2 - Chart/Notification */}
-              <div className="absolute top-4 right-12 bg-orange-400 rounded-full p-3 shadow-lg z-10">
+              <motion.div
+                className="absolute top-4 right-12 bg-orange-400 rounded-full p-3 shadow-lg z-10"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4, type: "spring" }}
+                whileHover={{ scale: 1.15, rotate: -10 }}
+              >
                 <svg
                   className="w-4 h-4 text-white"
                   fill="currentColor"
@@ -98,9 +180,15 @@ export function Hero() {
                 >
                   <path d="M10.5 1.5H19V10H10.5z" />
                 </svg>
-              </div>
+              </motion.div>
               {/* Bar chart indicator */}
-              <div className="absolute bottom-24 left-12 bg-white rounded-lg p-3 shadow-lg z-10">
+              <motion.div
+                className="absolute bottom-24 left-12 bg-white rounded-lg p-3 shadow-lg z-10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                whileHover={{ y: -5 }}
+              >
                 <p className="text-lg font-bold text-gray-900">
                   Business Growth
                 </p>
@@ -112,8 +200,8 @@ export function Hero() {
                   <div className="w-1 h-6 bg-teal-400 rounded"></div>
                   <div className="w-1 h-3 bg-teal-300 rounded"></div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -132,7 +220,6 @@ export function Hero() {
               platforms, and multi-store management software
             </p>
           </div>
-        
         </div>
         {/* Right Column - Feature Cards */}
         <div className="space-y-6 w-[80%]">
@@ -217,6 +304,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
