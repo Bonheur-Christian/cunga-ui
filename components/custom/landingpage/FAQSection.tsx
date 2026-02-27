@@ -64,7 +64,7 @@ export function FAQSection() {
   };
 
   return (
-    <section className="border-b border-border/50 bg-gradient-to-b from-background to-background/50">
+    <section className="border-b border-border/50 bg-slate-200/30">
       <div className="mx-auto max-w-[90%] px-12 py-16">
         <motion.div
           className="max-w-3xl mx-auto"
