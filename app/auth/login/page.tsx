@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowLeft, Undo2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next13-progressbar";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +31,13 @@ export default function LoginPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
+            <div
+              onClick={() => router.back()}
+              className="flex gap-4 mb-6 border border-teal-500 hover:scale-105 transition-all cursor-pointer duration-300 rounded-xl w-1/2 justify-center py-2"
+            >
+              <Undo2 className="w-5 h-5 text-muted-foreground" />
+              <p>Back</p>
+            </div>
             {/* Header */}
             <div className="mb-10">
               <Link href="/" className="text-3xl font-bold text-teal-500">
@@ -192,8 +201,6 @@ export default function LoginPage() {
                 </Button>
               </div>
             </motion.form>
-
-           
           </motion.div>
         </div>
       </div>
