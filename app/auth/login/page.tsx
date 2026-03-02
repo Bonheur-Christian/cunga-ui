@@ -40,17 +40,13 @@ export default function LoginPage() {
             </div>
             {/* Header */}
             <div className="mb-10">
-              <Link href="/" className="text-3xl font-bold text-teal-500">
-                Cunga
-              </Link>
-
               <motion.h1
-                className="text-3xl font-bold text-foreground mb-2"
+                className="text-3xl font-bold text-primary mb-2"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Sign in
+                Cunga Sign in
               </motion.h1>
               <motion.p
                 className="text-muted-foreground"
