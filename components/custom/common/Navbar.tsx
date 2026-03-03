@@ -58,7 +58,7 @@ export default function NavBar({ onMenuToggle }: NavBarProps) {
 
   return (
     <>
-      <header className="w-full border-b bg-slate-100 dark:bg-gray-900 dark:border-gray-800">
+      <header className="w-full border-b bg-background dark:bg-gray-900 dark:border-gray-800">
         <div className="flex items-center justify-between px-4 py-2">
 
           {/* LEFT SECTION */}

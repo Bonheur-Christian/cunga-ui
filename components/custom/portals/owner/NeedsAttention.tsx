@@ -5,7 +5,7 @@ const items = [
 ];
 
 const NeedsAttention = () => (
-  <section className="space-y-3">
+  <section className="space-y-3 h-ful">
     <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Needs Attention</h2>
     <div className="rounded-xl border border-border bg-card p-1">
       {items.map((item, i) => (

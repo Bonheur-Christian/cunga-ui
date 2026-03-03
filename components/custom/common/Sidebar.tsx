@@ -47,7 +47,7 @@ export default function Sidebar({
   return (
     <div
       className={cn(
-        "flex flex-col bg-slate-100 transition-all duration-300 h-screen border-r border-sidebar-border dark:bg-gray-900",
+        "flex flex-col bg-background transition-all duration-300 h-screen border-r border-sidebar-border dark:bg-gray-900",
         isCollapsed && !isMobile ? "w-[80px]" : "w-[250px] sm:w-[280px]",
         className,
       )}

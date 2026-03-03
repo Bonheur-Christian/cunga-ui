@@ -9,7 +9,7 @@ const getScoreColor = (s: number) => {
 };
 
 const HealthScore = () => (
-  <section className="space-y-3">
+  <section className="space-y-3 h-full">
     <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">Inventory Health</h2>
     <div className="rounded-xl border border-border bg-card px-5 py-5 flex items-center gap-6">
       <div className="relative w-20 h-20 shrink-0">

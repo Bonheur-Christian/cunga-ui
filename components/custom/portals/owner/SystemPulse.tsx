@@ -22,6 +22,7 @@ const SystemPulse = () => (
         >
           <span className="mr-2">{item.emoji}</span>
           <span className="text-foreground/90">{item.text}</span>
+           
         </div>
       ))}
     </div>
