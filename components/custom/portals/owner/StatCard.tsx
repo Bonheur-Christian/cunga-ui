@@ -12,11 +12,13 @@ interface StatCardProps {
 export default function StatCard({ title, values, period }: StatCardProps) {
   return (
     <div
-      className="rounded-lg border border-gray-300 hover:border-primary 
-                    space-y-4 px-6 py-4 transition-all duration-300 hover:scale-102 hover:border-2"
+      className="h-32 rounded-lg border border-gray-300 hover:border-primary 
+                    space-y-4 px-4 py-4 transition-all duration-300 
+                    hover:scale-105 hover:border-2 hover:z-10"
     >
-      <h1 className="text-sm text-gray-400">{title}</h1>
-
+      <h1 className="text-sm text-gray-400 border-b border-gray-200 pb-4">
+        {title}
+      </h1>
       <p className="text-2xl font-semibold">{values[period]}</p>
     </div>
   );
