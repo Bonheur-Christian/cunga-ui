@@ -99,7 +99,7 @@ export default function OldestStockProducts({
       <CardHeader className="flex flex-row items-center justify-between">
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5 text-orange-600" />
-          <CardTitle>Slow Moving Stock</CardTitle>
+          <CardTitle>Slow Moving Stock / Oldest Products In Stock</CardTitle>
         </div>
         <Badge
           variant="outline"
@@ -124,7 +124,7 @@ export default function OldestStockProducts({
               return (
                 <div
                   key={product.id}
-                  className="border rounded-xl overflow-hidden hover:border-orange-300 transition-colors"
+                  className="border rounded-xl overflow-hidden hover:border-primary transition-colors"
                 >
                   {/* Product Header - Always Visible - Compact */}
                   <div
