@@ -1,15 +1,18 @@
 interface StatCardProps {
   title: string;
-  values: {
+  value?: string;
+  values?: {
     today: string;
     weekly: string;
     monthly: string;
     yearly: string;
   };
-  period: "today" | "weekly" | "monthly" | "yearly";
+  period?: "today" | "weekly" | "monthly" | "yearly";
 }
 
-export default function StatCard({ title, values, period }: StatCardProps) {
+export default function StatCard({ title, value, values, period }: StatCardProps) {
+  const displayValue = value ?? (values && period ? values[period] : "");
+  
   return (
     <div
       className="h-32 rounded-lg border border-gray-300 hover:border-primary 
@@ -19,7 +22,7 @@ export default function StatCard({ title, values, period }: StatCardProps) {
       <h1 className="text-sm text-gray-400 border-b border-gray-200 pb-4">
         {title}
       </h1>
-      <p className="text-2xl font-semibold">{values[period]}</p>
+      <p className="text-2xl font-semibold">{displayValue}</p>
     </div>
   );
 }

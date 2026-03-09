@@ -345,8 +345,8 @@ import {
 import SalesChart from "@/components/custom/portals/owner/SalesChart";
 import LowStockProducts from "@/components/custom/portals/owner/LowStockProducts";
 import OldestStockProducts from "@/components/custom/portals/owner/OldestStockProducts";
+import { Period } from "@/types/period";
 
-type Period = "today" | "weekly" | "monthly" | "yearly";
 
 export default function OwnerPage() {
   const [period, setPeriod] = useState<Period>("today");
@@ -532,7 +532,7 @@ export default function OwnerPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background rounded-lg m-2">
       <div className="px-6 lg:px-12 py-8 space-y-8">
         {/* Header */}
         <div className="flex items-start justify-between">
